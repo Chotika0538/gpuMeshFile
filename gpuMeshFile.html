@@ -68,7 +68,7 @@
         // ✅ โหลดโมเดล OBJ
         const loader = new THREE.OBJLoader();
         //https://sibsansuk.github.io/myModel.obj
-        loader.load('model1.obj', function (object) {
+        loader.load('chair_1.obj', function (object) {
             // ตั้งค่า castShadow กับทุก mesh ใน object
             object.traverse(function (child) {
                 if (child.isMesh) {
