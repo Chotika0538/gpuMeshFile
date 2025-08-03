@@ -15,10 +15,11 @@
     <!-- core three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script>
 
         const renderer = new THREE.WebGLRenderer();
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true; // ✅ เปิดใช้งานเงา!
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -68,7 +69,7 @@
         // ✅ โหลดโมเดล OBJ
         const loader = new THREE.OBJLoader();
         //https://sibsansuk.github.io/myModel.obj
-        loader.load('chair_1.obj', function (object) {
+        loader.load('https://github.com/Chotika0538/gpuMeshFile/blob/main/chair_1.obj', function (object) {
             // ตั้งค่า castShadow กับทุก mesh ใน object
             object.traverse(function (child) {
                 if (child.isMesh) {
