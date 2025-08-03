@@ -19,7 +19,6 @@
     <script>
 
         const renderer = new THREE.WebGLRenderer();
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true; // ✅ เปิดใช้งานเงา!
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -37,7 +36,7 @@
         );
         camera.position.set(0, 2, 5);
         camera.lookAt(0, 0, 0);
-
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
         // ✅ Directional Light ที่สร้างเงา
         const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(5, 10, 5);
@@ -49,13 +48,9 @@
 
         scene.add(light);
 
-
-
         // ✅ Ambient Light เล็กน้อยให้สว่างรวม
         const ambient = new THREE.AmbientLight(0x404040);
         scene.add(ambient);
-
-
 
         // ✅ พื้น
         const planeGeometry = new THREE.PlaneGeometry(10, 10);
@@ -68,8 +63,8 @@
 
         // ✅ โหลดโมเดล OBJ
         const loader = new THREE.OBJLoader();
-        //https://sibsansuk.github.io/myModel.obj
-        loader.load('https://github.com/Chotika0538/gpuMeshFile/blob/main/chair_1.obj', function (object) {
+        //เก้าอี้
+        loader.load('https://raw.githubusercontent.com/Chotika0538/gpuMeshFile/refs/heads/main/chair_1.obj', function (object) {
             // ตั้งค่า castShadow กับทุก mesh ใน object
             object.traverse(function (child) {
                 if (child.isMesh) {
@@ -81,7 +76,20 @@
         }, undefined, function (error) {
             console.error('Error loading OBJ:', error);
         });
-
+        //model1
+        /*loader.load('https://sibsansuk.github.io/myModel.obj', function (object) {
+            // ตั้งค่า castShadow กับทุก mesh ใน object
+            object.traverse(function (child) {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                }
+            });
+            scene.add(object);
+        }, undefined, function (error) {
+            console.error('Error loading OBJ:', error);
+        });
+        */
         // ✅ render loop
         function animate(t) {
 
